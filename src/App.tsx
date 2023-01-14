@@ -23,6 +23,7 @@ function App() {
           setIsDisabled(e.target.checked);
         }}
       />
+      <label htmlFor="disable-button-checkbox">Disable checkbox</label>
     </div>
   );
 }
