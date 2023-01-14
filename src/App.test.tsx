@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { logRoles } from "@testing-library/dom";
 import App from "./App";
 
-test("button has correct initial color", () => {
+test("button has correct initial color, and updates when clicked", () => {
   const { container } = render(<App />);
 
   //if i'm not sure what role an element have, I can use the logRoles
@@ -24,4 +24,16 @@ test("button has correct initial color", () => {
 
   //expect the button text to be 'Change to red'
   expect(colorButton).toHaveTextContent("Change to red"); //checking the content text inside the button
+});
+
+test("initial conditions", () => {
+  render(<App />);
+
+  //check that the button starts out enable
+  const colorButton = screen.getByRole("button", { name: "Change to blue" });
+  expect(colorButton).toBeEnabled(); //the function toBeEnable checks if the element are enabled.
+
+  //check that the checkbox stats out unchecked
+  const checkbox = screen.getByRole("checkbox");
+  expect(checkbox).not.toBeChecked();
 });
